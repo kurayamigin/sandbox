@@ -1,5 +1,6 @@
 package parallel;
 
+import java.util.HashMap;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,7 +32,9 @@ public class TestLogin {
     options.addArguments("--remote-allow-origins=*");   // avoid connection errors
     options.addArguments("--disable-dev-shm-usage");
     // options.addArguments("--headless=new");
-
+    options.setCapability("goog:loggingPrefs", new HashMap<String, Object>() {{
+      put("browser", "ALL");
+    }});
     WebDriver web = new ChromeDriver(options);
     this.driver.set(web);
     this.driver.get().navigate().to("https://practicetestautomation.com/practice-test-login/");
@@ -40,7 +43,7 @@ public class TestLogin {
 
   @AfterMethod
   public void tearDown() {
-    //this.driver.get().quit();
+    this.driver.get().quit();
   }
 
   @Test
