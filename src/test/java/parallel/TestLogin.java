@@ -29,6 +29,7 @@ public class TestLogin {
     options.addArguments("--disable-gpu");              // applicable to Windows OS only
     options.addArguments("--no-sandbox");               // Bypass OS security model
     options.addArguments("--remote-allow-origins=*");   // avoid connection errors
+    options.addArguments("--disable-dev-shm-usage");
     // options.addArguments("--headless=new");
 
     WebDriver web = new ChromeDriver(options);
