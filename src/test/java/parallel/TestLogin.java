@@ -31,7 +31,7 @@ public class TestLogin {
     options.addArguments("--no-sandbox");               // Bypass OS security model
     options.addArguments("--remote-allow-origins=*");   // avoid connection errors
     options.addArguments("--disable-dev-shm-usage");
-    // options.addArguments("--headless=new");
+    options.addArguments("--headless=true");
     options.setCapability("goog:loggingPrefs", new HashMap<String, Object>() {{
       put("browser", "ALL");
     }});
