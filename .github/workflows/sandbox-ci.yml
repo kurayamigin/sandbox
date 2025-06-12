@@ -15,6 +15,14 @@ jobs:
           java-version: 17
           distribution: temurin
 
+      - name: ping server
+        run: 'curl https://api.ipify.org'
+      - name: ping proxy server
+        run: 'curl -v https://api.ipify.org'
+        env:
+          http_proxy: http://proxy.scrapeops.io:5353
+          https_proxy: http://proxy.scrapeops.io:5353
+
       - name: Install Chrome
         run: |
           sudo apt-get update
@@ -36,7 +44,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run Selenium Tests
-        run: ./gradlew test --stacktrace --info
+        run: ./gradlew test
 
       - name: Upload Test Report
         uses: actions/upload-artifact@v4
