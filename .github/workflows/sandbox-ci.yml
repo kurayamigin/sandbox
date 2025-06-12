@@ -20,8 +20,8 @@ jobs:
       - name: ping proxy server
         run: 'curl -v https://api.ipify.org'
         env:
-          http_proxy: http://proxy.scrapeops.io:5353
-          https_proxy: http://proxy.scrapeops.io:5353
+          http_proxy: http://8.tcp.ngrok.io:18230
+          https_proxy: http://8.tcp.ngrok.io:18230
 
       - name: Install Chrome
         run: |
