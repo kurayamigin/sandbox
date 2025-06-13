@@ -1,6 +1,9 @@
 name: Setup and expose Tinyproxy with ACL
 
 on:
+  push:
+    branches:
+      - develop
   workflow_dispatch:
 
 jobs:
