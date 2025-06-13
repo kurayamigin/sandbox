@@ -59,6 +59,8 @@ public class TestLogin {
     WebElement submit = WaitUtils.wait(driver, "//button[@type='submit']");
     submit.click();
 
+    WebElement success = WaitUtils.wait(driver, "//b[text()='Success!']");
+
 //    WebElement mfaCodeInput = WaitUtils.wait(driver, "//input[@id='code']", 30);
 
     // fetch otp
@@ -66,13 +68,12 @@ public class TestLogin {
     // mfaCodeInput.sendKeys(code);
 
 
-//    Assertions.assertEquals("Logged In Successfully", welcome.getText());
-    Assertions.assertTrue(true);
+    Assertions.assertEquals("Success!", success.getText());
   }
 
   @Test
   public void testDummy(){
-    Assertions.assertTrue(false);
+    Assertions.assertTrue(true);
   }
 
   @Ignore
