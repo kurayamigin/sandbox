@@ -15,14 +15,6 @@ jobs:
           java-version: 17
           distribution: temurin
 
-      - name: ping server
-        run: 'curl -k https://e54c-158-228-24-14.ngrok-free.app'
-      - name: ping proxy server
-        run: 'curl https://api.ipify.org'
-        env:
-          http_proxy: http://8.tcp.ngrok.io:18230
-          https_proxy: http://8.tcp.ngrok.io:18230
-
       - name: Install Chrome
         run: |
           sudo apt-get update
