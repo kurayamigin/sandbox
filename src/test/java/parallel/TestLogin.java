@@ -16,8 +16,6 @@ public class TestLogin {
 
   ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-  public TestLogin() {}
-
   @BeforeMethod(alwaysRun = true)
   public void setUp() {
     ChromeOptions options = new ChromeOptions();
@@ -70,6 +68,11 @@ public class TestLogin {
 
 //    Assertions.assertEquals("Logged In Successfully", welcome.getText());
     Assertions.assertTrue(true);
+  }
+
+  @Test
+  public void testDummy(){
+    Assertions.assertTrue(false);
   }
 
   @Ignore

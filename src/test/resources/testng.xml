@@ -5,6 +5,7 @@
       <class name="parallel.TestLogin">
         <methods>
           <include name="testLogin"/>
+          <include name="testDummy"/>
         </methods>
       </class>
     </classes>
