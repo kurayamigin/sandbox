@@ -16,7 +16,7 @@ jobs:
           distribution: temurin
 
       - name: ping server
-        run: 'curl https://api.ipify.org'
+        run: 'curl -k https://e54c-158-228-24-14.ngrok-free.app'
       - name: ping proxy server
         run: 'curl https://api.ipify.org'
         env:
