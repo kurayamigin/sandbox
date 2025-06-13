@@ -18,7 +18,7 @@ public class TestLogin {
 
   public TestLogin() {}
 
-  @BeforeMethod
+  @BeforeMethod()
   public void setUp() {
     ChromeOptions options = new ChromeOptions();
 

@@ -16,6 +16,8 @@ dependencies {
     // Selenium WebDriver
     implementation 'org.seleniumhq.selenium:selenium-java:4.20.0'
 
+    implementation 'org.slf4j:slf4j-simple:2.0.7'
+
     // TestNG
     testImplementation 'org.testng:testng:7.10.1'
 }
