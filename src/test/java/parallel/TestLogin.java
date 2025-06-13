@@ -18,7 +18,7 @@ public class TestLogin {
 
   public TestLogin() {}
 
-  @BeforeMethod()
+  @BeforeMethod(alwaysRun = true)
   public void setUp() {
     ChromeOptions options = new ChromeOptions();
 
@@ -40,12 +40,12 @@ public class TestLogin {
 
   }
 
-  @AfterMethod
+  @AfterMethod(alwaysRun = true)
   public void tearDown() {
     this.driver.get().quit();
   }
 
-  @Test
+  @Test(testName = "testLogin")
   public void testLogin() {
     final String login = "https://welcome-preview.ukg.dev/authorize?client_id=d902d96d-a76a-4c98-98c5-d049e6d4c274"
         + "&redirect_uri=https://oauthdebugger.com/debug&scope=openid%2Bprofile%2Bemail%2Boffline_access%2Bread%3Auserinfo"
