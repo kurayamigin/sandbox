@@ -1,0 +1,48 @@
+name: Setup and expose Tinyproxy with ACL
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup-proxy:
+    runs-on: [self-hosted, linux]
+
+    env:
+      ALLOWED_IP: 203.0.113.42   # <--- Replace with the IP you want to allow access from
+      PROXY_PORT: 8888
+
+    steps:
+      - name: Install tinyproxy
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tinyproxy
+
+      - name: Configure tinyproxy ACL and port
+        run: |
+          # Backup original config
+          sudo cp /etc/tinyproxy/tinyproxy.conf /etc/tinyproxy/tinyproxy.conf.bak
+
+          # Remove default localhost-only restrictions
+          sudo sed -i 's/^Allow 127.0.0.1/#Allow 127.0.0.1/' /etc/tinyproxy/tinyproxy.conf
+          sudo sed -i 's/^Bind 127.0.0.1/#Bind 127.0.0.1/' /etc/tinyproxy/tinyproxy.conf
+
+          # Set port to PROXY_PORT
+          sudo sed -i "s/^Port .*/Port ${PROXY_PORT}/" /etc/tinyproxy/tinyproxy.conf
+
+          # Add ACL rule for allowed IP
+          echo "Allow ${ALLOWED_IP}" | sudo tee -a /etc/tinyproxy/tinyproxy.conf
+
+          # (Optional) enable basic auth - uncomment and configure if needed
+          # echo "BasicAuth username password" | sudo tee -a /etc/tinyproxy/tinyproxy.conf
+
+          # Restart tinyproxy to apply changes
+          sudo systemctl restart tinyproxy
+          sudo systemctl enable tinyproxy
+#
+#      - name: Open firewall port for proxy
+#        run: |
+#          sudo ufw allow ${PROXY_PORT}/tcp
+#          sudo ufw reload
+
+      - name: Show tinyproxy status
+        run: sudo systemctl status tinyproxy --no-pager
