@@ -38,11 +38,6 @@ public class TestLogin {
     }});
     WebDriver web = new ChromeDriver(options);
     this.driver.set(web);
-    options.setCapability("goog:loggingPrefs", new HashMap<String, Object>() {{
-      put("browser", "ALL");
-    }});
-    WebDriver web = new ChromeDriver(options);
-    this.driver.set(web);
     this.driver.get().navigate().to("https://practicetestautomation.com/practice-test-login/");
 
   }
