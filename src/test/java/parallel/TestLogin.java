@@ -28,9 +28,19 @@ public class TestLogin {
     options.addArguments("--start-maximized");          // open browser in full screen
     options.addArguments("--disable-infobars");         // disabling infobars
     options.addArguments("--disable-extensions");       // disabling extensions
+    options.addArguments("--disable-gpu");              // applicable to Windows OS only
     options.addArguments("--no-sandbox");               // Bypass OS security model
     options.addArguments("--remote-allow-origins=*");   // avoid connection errors
     options.addArguments("--disable-dev-shm-usage");
+    options.addArguments("--headless=true");
+    options.setCapability("goog:loggingPrefs", new HashMap<String, Object>() {{
+      put("browser", "ALL");
+    }});
+    WebDriver web = new ChromeDriver(options);
+    this.driver.set(web);
+    options.setCapability("goog:loggingPrefs", new HashMap<String, Object>() {{
+      put("browser", "ALL");
+    }});
     WebDriver web = new ChromeDriver(options);
     this.driver.set(web);
     this.driver.get().navigate().to("https://practicetestautomation.com/practice-test-login/");
