@@ -49,3 +49,21 @@ jobs:
 
       - name: Show tinyproxy status
         run: sudo systemctl status tinyproxy --no-pager
+
+
+      - name: Download ngrok
+        run: |
+          curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+          echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
+          sudo apt update && sudo apt install ngrok
+
+      - name: Expose Tinyproxy with ngrok
+        env:
+          NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+        run: |
+          ngrok config add-authtoken $NGROK_AUTHTOKEN
+          ngrok tcp 8888 &
+          sleep 10
+          curl -s localhost:4040/api/tunnels
+      - name: Keep proxy alive
+        run: sleep 3600
