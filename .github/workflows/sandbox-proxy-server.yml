@@ -8,6 +8,7 @@ on:
 
 jobs:
   setup-proxy:
+    environment: dev
     runs-on: ubuntu-latest
 
     env:
